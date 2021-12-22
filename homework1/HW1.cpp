@@ -109,3 +109,4 @@ int main()
 
     cout << "Leftmost: " << x_left[left_ind]<<" "<<y_left[left_ind] << endl;
     cout << "Rightmost: " << x_right[right_ind]<<" "<<y_right[right_ind];
+}
