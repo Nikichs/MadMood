@@ -36,19 +36,11 @@ ifstream f("in.txt");
                 x.push_back(xr);
                 h.push_back(hr);
             }
-
-
-
             cnt++;
         }
     }
 
     f.close();
-
-
-    for (int i = 0; i<x.size(); i++){
-        //
-    }
 
 
 
@@ -76,12 +68,22 @@ ifstream f("in.txt");
     t = abs(s/Vx);
     h_fly = Vy*t -((g*t*t)/2);
 
+    /*
+    if (h_fly>=h_cur){
+        h_cur = h_fly;
+    }
+
+    else{
     h_cur = h_cur - abs(h_fly);
+    }
+    */
+
+    h_cur = h_cur + h_fly;
 
 
     //упал в полете
     if (h_cur<=0){
-        cout << i+1;
+        cout << i;
         break;
     }
 
@@ -98,7 +100,7 @@ ifstream f("in.txt");
                 break;
             }
 
-            else if ((Vx>0)and(i==x.size())){
+            else if ((Vx>0)and(i==x.size()-1)){
                 cout << i;
                 break;
             }
