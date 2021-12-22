@@ -1,2 +1,1 @@
-Homework
 Variant #1
