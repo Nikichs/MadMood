@@ -46,6 +46,9 @@ ifstream f("in.txt");
     f.close();
 
 
+    for (int i = 0; i<x.size(); i++){
+        //
+    }
 
 
 
@@ -53,11 +56,6 @@ ifstream f("in.txt");
  double g = 9.81;
 
 
- //int x[] = {3, 1, 6, 9};
- //int h[] = {2, 3, 1, 4};
- //double Vx = 1;
- //double Vy = 2;
- //double h0 = 10;
  double s, t, h_fly, h_cur;
  s = 0;
  h_cur = h0;
@@ -70,10 +68,15 @@ ifstream f("in.txt");
 
 
     s = abs(x[i]-s);
-    t = s/Vx;
+
+    if (Vx==0){
+      cout<<0;
+      break;
+    }
+    t = abs(s/Vx);
     h_fly = Vy*t -((g*t*t)/2);
 
-    h_cur = h_cur - h_fly;
+    h_cur = h_cur - abs(h_fly);
 
 
     //упал в полете
@@ -89,12 +92,6 @@ ifstream f("in.txt");
 
         //пролет
         if (h_cur>h[i]){
-                // границы перелетел
-
-            //cout<<"perelet " << i <<" "<<x[i]<<endl;
-
-
-            //i = 4 => length(x)...
 
             if ((Vx<0)and(i==1)){
                 cout << 0;
@@ -102,7 +99,7 @@ ifstream f("in.txt");
             }
 
             else if ((Vx>0)and(i==x.size())){
-                cout << i+1;
+                cout << i;
                 break;
             }
 
