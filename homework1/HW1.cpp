@@ -18,6 +18,7 @@ int main()
     double x0, y0;
     vector <double> x;
     vector <double> y;
+    bool on_line = false;
 
     ifstream f("in.txt");
     if ((f.is_open()))  // проверка наличия файла с тестом
@@ -58,6 +59,16 @@ int main()
 
         }
 
+        else if (D==0){
+
+            if (on_line == false) {
+                x_right.push_back(x[i]);
+                y_right.push_back(y[i]);
+                on_line = true;
+            }
+
+        }
+
         else{
 
             x_right.push_back(x[i]);
@@ -73,11 +84,10 @@ int main()
         cos_left.push_back(cos(x_left[i], y_left[i], x0, y0));
     }
     }
-    else {
-        //cout << "No Left";
+    else if (x_left.size()==0){
         x_left = {0};
         y_left = {0};
-        cos_left = {0};
+        cos_left = {-1};
     }
     //правые
 
@@ -87,17 +97,15 @@ int main()
     }
     }
 
-    else {
+    else if (x_right.size()==0){
         x_right = {0};
         y_right = {0};
-        cos_right = {0};
+        cos_right = {-1};
     }
 
     int left_ind = min_element(cos_left.begin(),cos_left.end()) - cos_left.begin();
     int right_ind = min_element(cos_right.begin(),cos_right.end()) - cos_right.begin();
 
+
     cout << "Leftmost: " << x_left[left_ind]<<" "<<y_left[left_ind] << endl;
     cout << "Rightmost: " << x_right[right_ind]<<" "<<y_right[right_ind];
-
-
-}
