@@ -3,7 +3,7 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     if(argc < 2 || argc > 2){
-        cout << "аргументов нет или их больше чем мы ожидаем"<< endl;
+        cout << "error"<< endl;
     }
 
 
@@ -52,8 +52,8 @@ int main(int argc, const char * argv[]) {
 
 
  double s, t, h_fly, h_cur;
- s = 0;
  h_cur = h0;
+ t = 0;
 
 
  int i = 0;
@@ -61,26 +61,32 @@ int main(int argc, const char * argv[]) {
 
  while (h_cur>0){
 
+    //cout<<i<<endl;
+    //cout<<"...."<<endl;
 
-    s = abs(x[i]-s);
+
+
+    if (i==0){
+        s = x[i];
+        if (Vx<0){
+            cout << 0;
+            break;
+        }
+    }
+
+    else{
+    s = abs(x[i]-x[i-1]);
+    }
+
+
 
     if (Vx==0){
       cout<<0;
       break;
     }
-    t = abs(s/Vx);
+
+    t = t + abs(s/Vx);
     h_fly = Vy*t -((g*t*t)/2);
-
-    /*
-    if (h_fly>=h_cur){
-        h_cur = h_fly;
-    }
-
-    else{
-    h_cur = h_cur - abs(h_fly);
-    }
-    */
-
     h_cur = h_cur + h_fly;
 
 
@@ -93,42 +99,37 @@ int main(int argc, const char * argv[]) {
     //врезался в стенку/над ней
 
     else{
-
-
         //пролет
         if (h_cur>h[i]){
 
             if ((Vx<0)and(i==1)){
                 cout << 0;
+                //cout << "Levo";
                 break;
+
             }
 
             else if ((Vx>0)and(i==x.size()-1)){
-                cout << i;
+                cout << i+1;
+                //cout << "NeLevo";
                 break;
             }
 
             else{
-
-                if (Vx>0){i++;}
-                else{i--;}
+                if (Vx>0){i++;} //cout<<"forw";}
+                else{i--;} //cout<<"Back";}
             }
         }
         else{
             //врезался
-            Vy = Vy - g*t;
-            t = 0;
             Vx = -Vx;
-            s = x[i];
+            //s = x[i];
 
-            if (Vx<0){i--;}
-            else{i++;}
+            //if (Vx<0){i--;}
+            //else{i++;}
         }
     }
 
-
-
  }
-
 
 }
