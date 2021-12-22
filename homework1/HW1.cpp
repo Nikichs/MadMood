@@ -10,16 +10,14 @@ double cos(double x, double y, double x0, double y0) {
 int main()
 {
 
-    char *File="in.txt";
+    
     double xr, yr;
     double x0, y0;
     vector <double> x;
     vector <double> y;
 
-    ifstream f(File);
-    if (!(f.is_open()))  // проверка наличия файла с тестом
-        cout<<"ERROR: not file "<<File;
-    else
+    ifstream f("in.txt");
+    
     {
         int cnt = 0;
         while(!f.eof()){
