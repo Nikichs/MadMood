@@ -5,16 +5,59 @@ int main()
 {
 
 
+double Vx, Vy, h0;
+vector <double> x;
+vector <double> h;
+
+
+double vxr, vyr, h0r, hr, xr;
+
+
+ifstream f("in.txt");
+    if ((f.is_open()))  // проверка наличия файла с тестом
+
+    {
+        int cnt = 0;
+        while(!f.eof()){
+
+            if (cnt == 0){
+                f>>hr;
+                h0 = hr;
+            }
+
+            else if (cnt == 1){
+                f>>vxr>>vyr;
+                Vx = vxr;
+                Vy = vyr;
+            }
+
+            else{
+                f>>xr>>hr;
+                x.push_back(xr);
+                h.push_back(hr);
+            }
+
+
+
+            cnt++;
+        }
+    }
+
+    f.close();
+
+
+
+
 
  //double Vx, Vy;
  double g = 9.81;
 
 
- int x[] = {3, 1, 6, 9};
- int h[] = {2, 3, 1, 4};
- double Vx = 1;
- double Vy = 2;
- double h0 = 10;
+ //int x[] = {3, 1, 6, 9};
+ //int h[] = {2, 3, 1, 4};
+ //double Vx = 1;
+ //double Vy = 2;
+ //double h0 = 10;
  double s, t, h_fly, h_cur;
  s = 0;
  h_cur = h0;
@@ -54,12 +97,12 @@ int main()
             //i = 4 => length(x)...
 
             if ((Vx<0)and(i==1)){
-                cout << "left border";
+                cout << 0;
                 break;
             }
 
-            else if ((Vx>0)and(i==3)){
-                cout << "right border";
+            else if ((Vx>0)and(i==x.size())){
+                cout << i+1;
                 break;
             }
 
