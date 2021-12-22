@@ -2,12 +2,8 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    string filename;
-    if (argc == 2) {
-        filename = string(argv[1]);
-    } else {
-        cerr << "ERROR: wrong number of input parameters: " << (argc - 1) << endl;
-        return 1;
+    if(argc < 2 || argc > 2){
+        cout << "аргументов нет или их больше чем мы ожидаем"<< endl;
     }
 
 
@@ -20,7 +16,7 @@ int main(int argc, const char * argv[]) {
     double vxr, vyr, h0r, hr, xr;
 
 
-    ifstream f(filename);
+    ifstream f(argv[1]);
     if ((f.is_open()))  // проверка наличия файла с тестом
 
     {
