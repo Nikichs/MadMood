@@ -2,9 +2,12 @@
 using namespace std;
 
 double cos(double x, double y, double x0, double y0) {
-        long double scalar = x0*x + y0*y;
-        long double mod_mult = sqrt(x0*x0 +y0*y0)*sqrt(x*x +y*y);
-        return scalar/mod_mult;
+        double scalar = x0*x + y0*y;
+        double mod_mult = sqrt(x0*x0 +y0*y0)*sqrt(x*x +y*y);
+        if (mod_mult == 0){
+            return -1;
+        }
+        else {return scalar/mod_mult;}
     }
 
 int main()
@@ -47,14 +50,14 @@ int main()
     vector <double> cos_left;
     vector <double> cos_right;
 
+    int cnt_for_last = 0;
 
-    for (long int i = 0; i<x.size(); i++){
+
+    for (int i = 0; i<x.size(); i++){
 
         if ((i==0) and (x.size() == 1)){
             break;
         }
-
-        //cout << "here";
         double D = x0*y[i]-y0*x[i];
         if (D>0){
             x_left.push_back(x[i]);
@@ -63,14 +66,11 @@ int main()
         }
 
         else if (D==0){
-
-            if (on_line == false) {
                 x_right.push_back(x[i]);
                 y_right.push_back(y[i]);
                 on_line = true;
+                cnt_for_last = i;
             }
-
-        }
 
         else{
 
@@ -83,7 +83,7 @@ int main()
     // левые точки
 
     if (x_left.size()!=0){
-    for (long int i = 0; i<=x_left.size()-1;i++){
+    for (int i = 0; i<=x_left.size()-1;i++){
         cos_left.push_back(cos(x_left[i], y_left[i], x0, y0));
     }
     }
@@ -95,7 +95,7 @@ int main()
     //правые
 
     if (x_right.size()!=0){
-        for (long int i = 0; i<=x_right.size()-1;i++){
+        for (int i = 0; i<=x_right.size()-1;i++){
         cos_right.push_back(cos(x_right[i], y_right[i], x0, y0));
     }
     }
@@ -106,8 +106,13 @@ int main()
         cos_right = {-1};
     }
 
-    long int left_ind = min_element(cos_left.begin(),cos_left.end()) - cos_left.begin();
-    long int right_ind = min_element(cos_right.begin(),cos_right.end()) - cos_right.begin();
+    int left_ind = min_element(cos_left.begin(),cos_left.end()) - cos_left.begin();
+    int right_ind;
+
+    if (on_line==true){
+        right_ind = cnt_for_last;
+    }
+    else {right_ind = min_element(cos_right.begin(),cos_right.end()) - cos_right.begin();}
 
 
     cout << "Leftmost: " << x_left[left_ind]<<" "<<y_left[left_ind] << endl;
