@@ -52,7 +52,7 @@ int main()
 
 
     for (int i = 0; i<x.size()-1; i++){
-        cout << "here";
+        //cout << "here";
         double D = x0*y[i]-y0*x[i];
         if (D>0){
             x_left.push_back(x[i]);
