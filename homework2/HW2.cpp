@@ -110,7 +110,7 @@ int main(int argc, const char * argv[]) {
             }
 
             else if ((Vx>0)and(i==x.size()-1)){
-                cout << i;
+                cout << i+1;
                 //cout << "NeLevo";
                 break;
             }
