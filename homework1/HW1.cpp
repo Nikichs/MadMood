@@ -51,7 +51,12 @@ int main()
     vector <double> cos_right;
 
 
-    for (int i = 0; i<x.size()-1; i++){
+    for (int i = 0; i<x.size(); i++){
+
+        if ((i==0) and (x.size() == 1)){
+            break;
+        }
+
         //cout << "here";
         double D = x0*y[i]-y0*x[i];
         if (D>0){
