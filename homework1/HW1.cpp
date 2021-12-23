@@ -1,21 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long double cos(double x, double y, double x0, double y0) {
+double cos(double x, double y, double x0, double y0) {
         long double scalar = x0*x + y0*y;
         long double mod_mult = sqrt(x0*x0 +y0*y0)*sqrt(x*x +y*y);
-        if (mod_mult ==0){
-            return -1;
-        }
-        else {return scalar/mod_mult;}
+        return scalar/mod_mult;
     }
 
 int main()
 {
 
 
-    long double xr, yr;
-    long double x0, y0;
+    double xr, yr;
+    double x0, y0;
     vector <double> x;
     vector <double> y;
     bool on_line = false;
@@ -86,7 +83,7 @@ int main()
     // левые точки
 
     if (x_left.size()!=0){
-    for (int i = 0; i<=x_left.size()-1;i++){
+    for (long int i = 0; i<=x_left.size()-1;i++){
         cos_left.push_back(cos(x_left[i], y_left[i], x0, y0));
     }
     }
@@ -98,7 +95,7 @@ int main()
     //правые
 
     if (x_right.size()!=0){
-        for (int i = 0; i<=x_right.size()-1;i++){
+        for (long int i = 0; i<=x_right.size()-1;i++){
         cos_right.push_back(cos(x_right[i], y_right[i], x0, y0));
     }
     }
