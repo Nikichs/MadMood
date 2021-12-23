@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-double cos(double x, double y, double x0, double y0) {
-        double scalar = x0*x + y0*y;
-        double mod_mult = sqrt(x0*x0 +y0*y0)*sqrt(x*x +y*y);
+long double cos(double x, double y, double x0, double y0) {
+        long double scalar = x0*x + y0*y;
+        long double mod_mult = sqrt(x0*x0 +y0*y0)*sqrt(x*x +y*y);
         if (mod_mult ==0){
             return -1;
         }
@@ -14,8 +14,8 @@ int main()
 {
 
 
-    double xr, yr;
-    double x0, y0;
+    long double xr, yr;
+    long double x0, y0;
     vector <double> x;
     vector <double> y;
     bool on_line = false;
@@ -51,7 +51,7 @@ int main()
     vector <double> cos_right;
 
 
-    for (int i = 0; i<x.size(); i++){
+    for (long int i = 0; i<x.size(); i++){
 
         if ((i==0) and (x.size() == 1)){
             break;
@@ -109,8 +109,8 @@ int main()
         cos_right = {-1};
     }
 
-    int left_ind = min_element(cos_left.begin(),cos_left.end()) - cos_left.begin();
-    int right_ind = min_element(cos_right.begin(),cos_right.end()) - cos_right.begin();
+    long int left_ind = min_element(cos_left.begin(),cos_left.end()) - cos_left.begin();
+    long int right_ind = min_element(cos_right.begin(),cos_right.end()) - cos_right.begin();
 
 
     cout << "Leftmost: " << x_left[left_ind]<<" "<<y_left[left_ind] << endl;
